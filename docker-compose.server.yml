@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  bootstrap:
+    platform: linux/amd64
+    image: docker.io/servian/techchallengeapp:latest
+    command: updatedb
+  server:
+    platform: linux/amd64
+    image: docker.io/servian/techchallengeapp:latest
+    command: serve
+    ports:
+      - 3000:3000
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
