@@ -42,6 +42,7 @@ Resources:
       ImageId: !Ref ImageId
       InstanceType: !Ref InstanceType
       IamInstanceProfile: !Ref EC2InstanceProfile
+      KeyName: servian-demo
       BlockDeviceMappings: 
       - DeviceName: "/dev/sda1"
         Ebs: 
@@ -102,6 +103,10 @@ Resources:
           FromPort: 3000
           ToPort: 3000
           CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 117.20.68.253/32 # John's IP
 
 #====================================================================================================
 #                                             IAM
