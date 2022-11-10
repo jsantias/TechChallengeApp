@@ -31,3 +31,7 @@ Information about the assessment is available in the [assessment.md file](ASSESS
 ## Found an issue?
 
 If you've found an issue with the application, the documentation, or anything else, we are happy to take contributions. Please raise an issue in the [github repository](https://github.com/Servian/TechChallengeApp/issues) and read through the contribution rules found the [CONTRIBUTING.md](CONTRIBUTING.md) file for the details.
+
+## Running the application
+
+Clone the project then execute `run-local.ps1` powershell script. This will pull and run the project using docker containers. The purpose of this solution is to eliminate the time spent to install and run the app.

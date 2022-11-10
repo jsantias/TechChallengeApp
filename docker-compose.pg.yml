@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgis/postgis:12-master
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${VTT_DBUSER}
+      - POSTGRES_PASSWORD=${VTT_DBPASSWORD}
+      - POSTGRES_DB=${VTT_DBNAME}
+    restart: always
+    healthcheck:
+        test: "exit 0"
+  bootstrap:
+    platform: linux/amd64
+    environment:
+      - VTT_LISTENHOST=${VTT_LISTENHOST}
+      - VTT_LISTENPORT=${VTT_LISTENPORT}
+      - VTT_DBHOST=${VTT_DBHOST}
+      - VTT_DBPORT=${VTT_DBPORT}
+      - VTT_DBNAME=${VTT_DBNAME}
+      - VTT_DBUSER=${VTT_DBUSER}
+      - VTT_DBPASSWORD=${VTT_DBPASSWORD}
+    depends_on:
+      postgres:
+        condition: service_healthy
+  server:
+    platform: linux/amd64
+    environment:
+      - VTT_LISTENHOST=${VTT_LISTENHOST}
+      - VTT_LISTENPORT=${VTT_LISTENPORT}
+      - VTT_DBHOST=${VTT_DBHOST}
+      - VTT_DBPORT=${VTT_DBPORT}
+      - VTT_DBNAME=${VTT_DBNAME}
+      - VTT_DBUSER=${VTT_DBUSER}
+      - VTT_DBPASSWORD=${VTT_DBPASSWORD}
